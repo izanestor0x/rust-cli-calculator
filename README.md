@@ -9,9 +9,9 @@ A simple command-line calculator written in Rust. It started as a practice proje
 - Dispatches the operation with `match` and returns the result up to `main`
 - Operations available:
   - [x] Addition
-  - [ ] Subtraction
-  - [ ] Multiplication
-  - [ ] Division
+  - [x] Subtraction
+  - [x] Multiplication
+  - [x] Division (integer division)
 
 ## 🚀 Getting started
 
@@ -33,10 +33,13 @@ cargo run
 <---CALCULATOR--->
 What you want to do?
 1.- Addition
+2.- Subtraction
+3.- Multiplication
+4.- Division
 1
 Enter the first number: 5
 Enter the second number: 3
-The result is 8 !
+The result is 8.
 ```
 
 ## 🧱 How it works
@@ -48,11 +51,11 @@ The result is 8 !
 | `reader`        | Reads a line from the keyboard and parses it into an `i32`          |
 | `user_numbers`  | Asks for two numbers and returns them as a tuple `(i32, i32)`       |
 | `checker`       | Reads the option, picks the operation with `match` and returns it   |
-| `addition`      | Receives two numbers and returns their sum                          |
+| `addition`, `substraction`, `multiplication`, `division` | Each one receives two numbers and returns the result of its operation |
 
 ## 🗺️ Roadmap
 
-- [ ] Add the remaining operations
+- [x] Add the remaining operations
 - [ ] Replace option numbers with an `enum Operation`
 - [ ] Handle invalid input and division by zero with `Result` instead of `unwrap`/`panic!`
 - [ ] Split the code into modules
