@@ -9,13 +9,16 @@ fn main() {
     //checker does a match to whatever is the number call a different function, does the operation and returns it
     //checker has the value of the operation
     let result = checker();
-    print!("The result is {} ! ", result )
+    println!("The result is {}.", result )
 }
 
 fn show_menu() {
     println!("<---CALCULATOR--->");
     println!("What you want to do?");
     println!("1.- Addition");
+    println!("2.- Subtraction");
+    println!("3.- Multiplication");
+    println!("4.- Division");
 }
 
 fn reader() -> i32{
@@ -32,6 +35,9 @@ fn checker() -> i32 {
 
     let result = match option {
         1 => addition(user_number1, user_number2),
+        2 => substraction(user_number1, user_number2),
+        3 => multiplication(user_number1, user_number2),
+        4 => division(user_number1, user_number2),
         _ => panic!("Invalid option"),
     };
     result
@@ -46,7 +52,17 @@ fn user_numbers() -> (i32, i32) {
     let user_number2 = reader();
     (user_number1, user_number2)
 }
+
+
 fn addition(a: i32, b:i32) -> i32{
     a + b
 }
-
+fn substraction (a: i32, b:i32) -> i32 {
+    a-b
+}
+fn multiplication (a: i32, b:i32) -> i32 {
+    a*b
+}
+fn division (a: i32, b:i32) -> i32 {
+    a/b
+}
