@@ -1,27 +1,34 @@
-use std::io::{self, Write};
-
+use std::io::{ self, Write };
 fn main() {
+    loop {
+        //show main menu, with options
+        show_menu();
 
-    //show main menu, with options
-    show_menu();
+        let option = read_option();
 
-    //program reads the 2 numbers the user wants to evalue and the option that the user wants
-    //checker does a match to whatever is the number call a different function, does the operation and returns it
-    //checker has the value of the operation
-    let result = checker();
-    println!("The result is {}.", result )
+        //program reads the 2 numbers the user wants to evalue and the option that the user wants
+        //calculate does a match to whatever is the number call a different function, does the operation and returns it
+        let (user_number1, user_number2) = read_two_numbers();
+
+        //calculate has the value of the operation
+        let result = calculate(option, user_number1, user_number2);
+
+        show_result(result);
+        println!();
+    }
 }
 
 fn show_menu() {
     println!("<---CALCULATOR--->");
-    println!("What you want to do?");
     println!("1.- Addition");
     println!("2.- Subtraction");
     println!("3.- Multiplication");
     println!("4.- Division");
+    println!("0.- Exit");
+    println!("")
 }
 
-fn reader() -> i32{
+fn read_number() -> i32 {
     //Input
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
@@ -29,40 +36,50 @@ fn reader() -> i32{
     number
 }
 
-fn checker() -> i32 {
-    let option = reader();
-    let (user_number1, user_number2) = user_numbers();
+fn calculate(option: i32, a: i32, b:i32) -> i32 {
 
     let result = match option {
-        1 => addition(user_number1, user_number2),
-        2 => substraction(user_number1, user_number2),
-        3 => multiplication(user_number1, user_number2),
-        4 => division(user_number1, user_number2),
+        1 => add(a, b),
+        2 => subtract(a, b),
+        3 => multiply(a, b),
+        4 => divide(a, b),
         _ => panic!("Invalid option"),
     };
     result
 }
 
-fn user_numbers() -> (i32, i32) {
+fn read_two_numbers() -> (i32, i32) {
     print!("Enter the first number: ");
     io::stdout().flush().unwrap();
-    let user_number1 = reader();
+    let user_number1 = read_number();
     print!("Enter the second number: ");
     io::stdout().flush().unwrap();
-    let user_number2 = reader();
+    let user_number2 = read_number();
     (user_number1, user_number2)
 }
 
+fn read_option() -> i32 {
+    print!("What you want to do? ");
+    io::stdout().flush().unwrap();
+    let option = read_number();
+    option
+}
 
-fn addition(a: i32, b:i32) -> i32{
+fn show_result(result: i32) -> i32 {
+    println!("The result is {result}");
+    println!("");
+    result
+}
+
+fn add(a: i32, b: i32) -> i32 {
     a + b
 }
-fn substraction (a: i32, b:i32) -> i32 {
-    a-b
+fn subtract(a: i32, b: i32) -> i32 {
+    a - b
 }
-fn multiplication (a: i32, b:i32) -> i32 {
-    a*b
+fn multiply(a: i32, b: i32) -> i32 {
+    a * b
 }
-fn division (a: i32, b:i32) -> i32 {
-    a/b
+fn divide(a: i32, b: i32) -> i32 {
+    a / b
 }
